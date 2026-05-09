@@ -49,10 +49,12 @@ app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/applications', applicationRoutes);
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🚀  E-Cell Backend running on http://localhost:${PORT}`);
-  console.log(`   Health: http://localhost:${PORT}/health\n`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n🚀  E-Cell Backend running on http://localhost:${PORT}`);
+    console.log(`   Health: http://localhost:${PORT}/health\n`);
+  });
+}
 
 export default app; 
 
