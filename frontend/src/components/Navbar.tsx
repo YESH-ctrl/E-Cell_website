@@ -6,11 +6,11 @@ import { useAuth } from '../contexts/AuthContext';
 
 // All sections — "locked" ones require auth
 const NAV_LINKS = [
-  { label: 'Home',        href: '/',            isPath: true,  locked: false },
-  { label: 'About',       href: '#about',       isPath: false, locked: true  },
+  { label: 'Home',        href: '/',            isPath: true  },
+  { label: 'About',       href: '#about',       isPath: false },
   { label: 'Initiatives', href: '/initiatives', isPath: true  },
-  { label: 'Team',        href: '/team',        isPath: true,  locked: false },
-  { label: 'Gallery',     href: '/gallery',     isPath: true,  locked: false },
+  { label: 'Team',        href: '/team',        isPath: true  },
+  { label: 'Gallery',     href: '/gallery',     isPath: true  },
 ];
 
 export default function Navbar() {
@@ -68,10 +68,6 @@ export default function Navbar() {
 
   const handleNavClick = (link: typeof NAV_LINKS[0]) => {
     setMobileOpen(false);
-    if (link.locked && !currentUser) {
-      navigate('/login');
-      return;
-    }
     
     if (link.isPath) {
       navigate(link.href);
@@ -146,7 +142,6 @@ export default function Navbar() {
 
             {/* Nav links — locked ones show a lock icon if not signed in */}
             {NAV_LINKS.map((link) => {
-              const isLocked  = link.locked && !currentUser;
               const isActive  = link.isPath 
                 ? location.pathname === link.href 
                 : isHomePage && activeSection === link.href.replace('#', '');
@@ -155,25 +150,18 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link)}
-                  title={isLocked ? 'Sign in to access' : undefined}
                   className={`relative flex items-center gap-1 text-sm font-medium transition-colors duration-300 group ${
                     isActive
                       ? 'text-sky-400'
-                      : isLocked
-                        ? 'text-white/30 hover:text-white/50'
-                        : 'text-white/70 hover:text-white'
+                      : 'text-white/70 hover:text-white'
                   }`}
                 >
                   {link.label}
-                  {isLocked ? (
-                    <Lock size={10} className="text-white/25 mb-px" />
-                  ) : (
-                    <span
-                      className={`absolute -bottom-1 left-0 h-[1px] bg-sky-400 transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                    />
-                  )}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-[1px] bg-sky-400 transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
                 </button>
               );
             })}
@@ -296,7 +284,6 @@ export default function Navbar() {
             className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-[#030712]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-7"
           >
             {NAV_LINKS.map((link, i) => {
-              const isLocked = link.locked && !currentUser;
               const isActive = link.isPath 
                 ? location.pathname === link.href 
                 : isHomePage && activeSection === link.href.replace('#', '');
@@ -311,13 +298,10 @@ export default function Navbar() {
                   className={`flex items-center gap-2 text-2xl font-semibold transition-colors ${
                     isActive
                       ? 'text-sky-400'
-                      : isLocked
-                        ? 'text-white/30'
-                        : 'text-white/80 hover:text-sky-400'
+                      : 'text-white/80 hover:text-sky-400'
                   }`}
                 >
                   {link.label}
-                  {isLocked && <Lock size={14} className="text-white/20" />}
                 </motion.button>
               );
             })}
