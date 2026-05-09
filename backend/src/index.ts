@@ -39,6 +39,10 @@ app.use(cors({
 app.use(express.json());
 
 // ── Health check ──────────────────────────────────────────────────────────────
+app.get('/', (_req, res) => {
+  res.json({ message: 'E-Cell Backend API is running' });
+});
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
