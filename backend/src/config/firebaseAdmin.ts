@@ -37,6 +37,6 @@ if (serviceAccount && !admin.apps.length) {
   console.warn('⚠️ Firebase Admin is NOT initialized. Auth routes will fail.');
 }
 
-export const adminAuth = admin.auth();
-export const adminDb   = admin.firestore();
+export const adminAuth = (serviceAccount ? admin.auth() : null) as unknown as admin.auth.Auth;
+export const adminDb   = (serviceAccount ? admin.firestore() : null) as unknown as admin.firestore.Firestore;
 export default admin;
