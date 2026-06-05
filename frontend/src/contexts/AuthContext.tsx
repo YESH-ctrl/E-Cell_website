@@ -145,13 +145,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const role: UserRole = ALLOWED_ECELL_EMAILS.includes(email) ? 'ecell_member' : 'student';
       setUserRole(role);
       cacheRole(uid, role);
+      
+      const displayName = user.displayName ?? '';
       persistRoleToFirestore(uid, {
         uid,
-        displayName: user.displayName ?? '',
-        email:       user.email ?? '',
-        role:        'student',
+        displayName,
+        email,
+        role,
         createdAt:   new Date().toISOString(),
       });
+
+      // Inform the backend to create the user with the correct role
+      credential.user.getIdToken().then((idToken) => {
+        fetch(
+          `${import.meta.env.VITE_BACKEND_URL ?? 'https://e-cell-website-navy.vercel.app'}/api/auth/register`,
+          {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
+            body:    JSON.stringify({ uid, displayName, email, role }),
+          },
+        ).catch(console.warn);
+      }).catch(console.warn);
+
     } else {
       setUserRole(existingRole);
     }
