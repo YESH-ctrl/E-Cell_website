@@ -124,7 +124,7 @@ export default function Contact() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="glass rounded-2xl p-10 text-center border border-sky-500/20"
+                className="glass rounded-2xl p-6 md:p-10 text-center border border-sky-500/20"
               >
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-sky-500/20 to-sky-700/20 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
                   <Send size={32} className="text-sky-400" />
@@ -139,7 +139,7 @@ export default function Contact() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 border border-white/5 space-y-5">
+              <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 border border-white/5 space-y-5">
                 {error && (
                   <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm px-4 py-3 rounded-xl">
                     {error}

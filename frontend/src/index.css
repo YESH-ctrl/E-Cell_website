@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -27,6 +28,15 @@ body {
   color: #fff;
   overflow-x: hidden;
   cursor: none;
+}
+
+/* ── Disable custom cursor on touch / mobile devices ───────────────────────── */
+@media (pointer: coarse), (max-width: 768px) {
+  body,
+  a, button, [role="button"],
+  input, textarea, select {
+    cursor: auto !important;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -63,7 +73,11 @@ body {
 }
 
 @media (max-width: 768px) {
-  .section-padding { padding: 4rem 0; }
+  .section-padding { padding: 3.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .section-padding { padding: 2.5rem 0; }
 }
 
 @keyframes float {
@@ -140,6 +154,33 @@ body {
 
 a, button, [role="button"] {
   cursor: none;
+}
+
+/* ── Mobile touch targets & form inputs ───────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Prevent iOS zoom on input focus (requires 16px min) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Better touch targets */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  /* Reduce heavy blur on low-powered mobile GPUs */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Disable card hover lift on mobile (no hover) */
+  .card-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 /* ── Auth page utilities ──────────────────────────────────────────────────── */
@@ -238,4 +279,3 @@ a, button, [role="button"] {
 .auth-btn-google:disabled {
   opacity: 0.55;
 }
-

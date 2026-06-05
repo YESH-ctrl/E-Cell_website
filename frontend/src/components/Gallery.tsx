@@ -12,7 +12,7 @@ const images = [
   { src: '/gallery/ideation_session.JPG', caption: 'Ideation Session', span: '' },
   { src: '/gallery/coding_marathon.JPG', caption: 'Coding Marathon', span: '' },
   { src: '/gallery/startup_pitch_night.JPG', caption: 'Startup Pitch Night', span: '' },
-  { src: '/gallery/networking_event.jpg', caption: 'Networking Event', span: 'col-span-2' },
+  { src: '/gallery/networking_event.JPG', caption: 'Networking Event', span: 'col-span-2' },
   { src: '/gallery/mentorconnect_session.JPG', caption: 'MentorConnect Session', span: '' },
 ];
 

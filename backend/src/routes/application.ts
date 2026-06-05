@@ -5,19 +5,86 @@ const router = Router();
 
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { fullName, email, rollNumber, department, year, reason } = req.body;
+    const {
+      fullName,
+      rollNumber,
+      branch,
+      yearOfStudy,
+      mobileNumber,
+      emailID,
+      linkedInProfile,
+      portfolioUrl,
+      pastClubMember,
+      pastClubDetails,
+      organizedEvent,
+      organizedEventDetails,
+      bestDescribesYou,
+      preferredDomains,
+      teamCrisisAnswer,
+      opportunityAnswer,
+      leadershipAnswer,
+      foundersOfficeAnswer,
+      impactAnswer,
+      whyJoin,
+      solveProblem,
+      takeInitiative,
+      tenThousandRupees,
+      successMeaning
+    } = req.body;
     
-    if (!fullName || !email || !rollNumber || !department || !year || !reason) {
-      return res.status(400).json({ error: 'All fields are required' });
+    // Validate required fields
+    if (
+      !fullName ||
+      !rollNumber ||
+      !branch ||
+      !yearOfStudy ||
+      !mobileNumber ||
+      !emailID ||
+      !pastClubMember ||
+      !organizedEvent ||
+      !bestDescribesYou ||
+      !preferredDomains ||
+      !Array.isArray(preferredDomains) ||
+      preferredDomains.length === 0 ||
+      !teamCrisisAnswer ||
+      !opportunityAnswer ||
+      !leadershipAnswer ||
+      !foundersOfficeAnswer ||
+      !impactAnswer ||
+      !whyJoin ||
+      !solveProblem ||
+      !takeInitiative ||
+      !tenThousandRupees ||
+      !successMeaning
+    ) {
+      return res.status(400).json({ error: 'All required fields must be filled' });
     }
 
     const newApplication = new Application({
       fullName,
-      email,
       rollNumber,
-      department,
-      year,
-      reason,
+      branch,
+      yearOfStudy,
+      mobileNumber,
+      emailID,
+      linkedInProfile: linkedInProfile || '',
+      portfolioUrl: portfolioUrl || '',
+      pastClubMember,
+      pastClubDetails: pastClubDetails || '',
+      organizedEvent,
+      organizedEventDetails: organizedEventDetails || '',
+      bestDescribesYou,
+      preferredDomains,
+      teamCrisisAnswer,
+      opportunityAnswer,
+      leadershipAnswer,
+      foundersOfficeAnswer,
+      impactAnswer,
+      whyJoin,
+      solveProblem,
+      takeInitiative,
+      tenThousandRupees,
+      successMeaning
     });
     
     await newApplication.save();
