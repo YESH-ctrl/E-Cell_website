@@ -5,34 +5,36 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let serviceAccount: any;
+let serviceAccount: any = null;
 
-if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
-  try {
+try {
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
     serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
-  } catch (err) {
-    throw new Error('Failed to parse FIREBASE_SERVICE_ACCOUNT_JSON environment variable');
+  } else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
+    const resolvedPath = path.resolve(process.env.FIREBASE_SERVICE_ACCOUNT_PATH);
+    if (fs.existsSync(resolvedPath)) {
+      serviceAccount = JSON.parse(fs.readFileSync(resolvedPath, 'utf-8'));
+    } else {
+      console.warn(`⚠️ Firebase service account file not found at: ${resolvedPath}`);
+    }
+  } else {
+    console.warn('⚠️ Neither FIREBASE_SERVICE_ACCOUNT_JSON nor FIREBASE_SERVICE_ACCOUNT_PATH is set.');
   }
-} else {
-  const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
-
-  if (!serviceAccountPath) {
-    throw new Error('Neither FIREBASE_SERVICE_ACCOUNT_JSON nor FIREBASE_SERVICE_ACCOUNT_PATH is set');
-  }
-
-  const resolvedPath = path.resolve(serviceAccountPath);
-
-  if (!fs.existsSync(resolvedPath)) {
-    throw new Error(`Firebase service account file not found at: ${resolvedPath}`);
-  }
-
-  serviceAccount = JSON.parse(fs.readFileSync(resolvedPath, 'utf-8'));
+} catch (err) {
+  console.error('❌ Failed to parse Firebase service account credentials:', err);
 }
 
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
+if (serviceAccount && !admin.apps.length) {
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+    console.log('✅ Firebase Admin initialized successfully');
+  } catch (err) {
+    console.error('❌ Firebase Admin initialization failed:', err);
+  }
+} else if (!serviceAccount) {
+  console.warn('⚠️ Firebase Admin is NOT initialized. Auth routes will fail.');
 }
 
 export const adminAuth = admin.auth();
