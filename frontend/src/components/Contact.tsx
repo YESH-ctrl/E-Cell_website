@@ -27,7 +27,7 @@ export default function Contact() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'}/api/inquiries`,
+        `${import.meta.env.VITE_BACKEND_URL ?? 'https://e-cell-website-navy.vercel.app'}/api/inquiries`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

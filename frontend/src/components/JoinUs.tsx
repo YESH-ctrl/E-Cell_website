@@ -240,7 +240,7 @@ export default function JoinUs() {
       };
 
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'}/api/applications`,
+        `${import.meta.env.VITE_BACKEND_URL ?? 'https://e-cell-website-navy.vercel.app'}/api/applications`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

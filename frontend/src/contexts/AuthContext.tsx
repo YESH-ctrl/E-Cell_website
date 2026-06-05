@@ -116,7 +116,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // 4. Inform the backend (Admin SDK bypasses Firestore security rules)
     credential.user.getIdToken().then((idToken) => {
       fetch(
-        `${import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'}/api/auth/register`,
+        `${import.meta.env.VITE_BACKEND_URL ?? 'https://e-cell-website-navy.vercel.app'}/api/auth/register`,
         {
           method:  'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
