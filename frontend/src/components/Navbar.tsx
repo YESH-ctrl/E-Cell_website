@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 // All sections — "locked" ones require auth
 const NAV_LINKS = [
   { label: 'Home',        href: '/',            isPath: true  },
-  { label: 'About',       href: '#about',       isPath: false },
+  { label: 'About',       href: '/about',       isPath: true  },
   { label: 'Initiatives', href: '/initiatives', isPath: true  },
   { label: 'Team',        href: '/team',        isPath: true  },
   { label: 'Gallery',     href: '/gallery',     isPath: true  },
@@ -107,7 +107,7 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 2.2 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled || !isHomePage
             ? 'py-3 bg-[#030712]/90 backdrop-blur-xl border-b border-white/5'

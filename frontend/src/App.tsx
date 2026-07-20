@@ -6,7 +6,6 @@ import { AuthProvider }     from './contexts/AuthContext';
 import ProtectedRoute       from './components/ProtectedRoute';
 import GlobalBackground     from './components/GlobalBackground';
 import CustomCursor         from './components/CustomCursor';
-import LoadingScreen        from './components/LoadingScreen';
 import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import About                from './components/About';
@@ -24,6 +23,7 @@ import TeamPage             from './pages/TeamPage';
 import ChangePassword       from './pages/ChangePassword';
 import Speakers             from './components/Speakers';
 import InitiativesPage      from './pages/InitiativesPage';
+import AboutPage            from './pages/AboutPage';
 import BestLanding          from './pages/BestLanding';
 import BestStudentDashboard from './pages/BestStudentDashboard';
 import BestAdminDashboard   from './pages/BestAdminDashboard';
@@ -57,132 +57,107 @@ function HomePage() {
 
 // ── App root ──────────────────────────────────────────────────────────────────
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2200);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <AuthProvider>
       <Router>
         <GlobalBackground />
         <CustomCursor />
-        <LoadingScreen isLoading={loading} />
 
-        <AnimatePresence>
-          {!loading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="min-h-screen"
-            >
-              <Routes>
-                {/* ── Public ─────────────────────────────────────────────── */}
-                <Route path="/"         element={<HomePage />} />
-                <Route path="/login"    element={<Login />}    />
-                <Route path="/signup"   element={<Signup />}   />
-                
-                {/* ── New Pages ──────────────────────────────────────────── */}
-                <Route
-                  path="/join"
-                  element={
-                    <ProtectedRoute>
-                      <JoinUsPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/gallery"
-                  element={
-                    <ProtectedRoute>
-                      <GalleryPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/team"
-                  element={
-                    <ProtectedRoute>
-                      <TeamPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="/initiatives" element={<InitiativesPage />} />
-                
-                {/* ── BEST Ecosystem (Member Only) ─────────────────────────── */}
-                <Route 
-                  path="/best" 
-                  element={
-                    <ProtectedRoute requiredRole="ecell_member">
-                      <BestLanding />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="/best/dashboard" 
-                  element={
-                    <ProtectedRoute requiredRole="ecell_member">
-                      <BestStudentDashboard />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="/best/admin" 
-                  element={
-                    <ProtectedRoute requiredRole="ecell_member">
-                      <BestAdminDashboard />
-                    </ProtectedRoute>
-                  } 
-                />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="min-h-screen"
+        >
+          <Routes>
+            {/* ── Public ─────────────────────────────────────────────── */}
+            <Route path="/"         element={<HomePage />} />
+            <Route path="/login"    element={<Login />}    />
+            <Route path="/signup"   element={<Signup />}   />
+            
+            {/* ── New Pages ──────────────────────────────────────────── */}
+            <Route
+              path="/join"
+              element={
+                <ProtectedRoute>
+                  <JoinUsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/about"   element={<AboutPage />}   />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/team"    element={<TeamPage />}    />
+            <Route path="/initiatives" element={<InitiativesPage />} />
+            
+            {/* ── BEST Ecosystem (Member Only) ─────────────────────────── */}
+            <Route 
+              path="/best" 
+              element={
+                <ProtectedRoute requiredRole="ecell_member">
+                  <BestLanding />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/best/dashboard" 
+              element={
+                <ProtectedRoute requiredRole="ecell_member">
+                  <BestStudentDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/best/admin" 
+              element={
+                <ProtectedRoute requiredRole="ecell_member">
+                  <BestAdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
 
-                <Route
-                  path="/change-password"
-                  element={
-                    <ProtectedRoute>
-                      <ChangePassword />
-                    </ProtectedRoute>
-                  }
-                />
+            <Route
+              path="/change-password"
+              element={
+                <ProtectedRoute>
+                  <ChangePassword />
+                </ProtectedRoute>
+              }
+            />
 
-                {/* ── Student dashboard (role-gated) ─────────────────────── */}
-                <Route
-                  path="/student-dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="student">
-                      <StudentDashboard />
-                    </ProtectedRoute>
-                  }
-                />
+            {/* ── Student dashboard (role-gated) ─────────────────────── */}
+            <Route
+              path="/student-dashboard"
+              element={
+                <ProtectedRoute requiredRole="student">
+                  <StudentDashboard />
+                </ProtectedRoute>
+              }
+            />
 
-                {/* ── E-Cell member dashboard (role-gated) ───────────────── */}
-                <Route
-                  path="/ecell-dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="ecell_member">
-                      <EcellDashboard />
-                    </ProtectedRoute>
-                  }
-                />
+            {/* ── E-Cell member dashboard (role-gated) ───────────────── */}
+            <Route
+              path="/ecell-dashboard"
+              element={
+                <ProtectedRoute requiredRole="ecell_member">
+                  <EcellDashboard />
+                </ProtectedRoute>
+              }
+            />
 
-                {/* ── Generic /dashboard → redirect based on role ─────────── */}
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
-                      <DashboardRedirect />
-                    </ProtectedRoute>
-                  }
-                />
+            {/* ── Generic /dashboard → redirect based on role ─────────── */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardRedirect />
+                </ProtectedRoute>
+              }
+            />
 
-                {/* ── Catch-all ──────────────────────────────────────────── */}
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            {/* ── Catch-all ──────────────────────────────────────────── */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </motion.div>
       </Router>
     </AuthProvider>
   );

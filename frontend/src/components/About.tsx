@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Target, Eye, Rocket, Globe } from 'lucide-react';
-import { staggerContainer, fadeInUp } from '../animations/variants';
+import { staggerContainer } from '../animations/variants';
 
 const timeline = [
   { year: '2019', title: 'Founded', desc: 'E-Cell established with a vision to foster entrepreneurship on campus.' },
@@ -10,6 +10,48 @@ const timeline = [
   { year: '2022', title: 'National Recognition', desc: 'Ranked among top 10 college E-Cells nationally.' },
   { year: '2023', title: 'Global Partnerships', desc: 'Partnered with international accelerators and VCs.' },
   { year: '2024', title: 'Scale Up', desc: '200+ active members, 30+ successful startup alumni.' },
+];
+
+const CARDS = [
+  {
+    icon: Eye,
+    title: 'Our Vision',
+    text: 'To become the premier entrepreneurship hub that transforms every student into a problem-solver capable of creating meaningful change.',
+    borderColor: 'hover:border-sky-500/40',
+    iconColor: 'text-sky-400',
+    iconBg: 'bg-sky-500/10 group-hover:bg-sky-500/20 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]',
+    hoverGlow: 'rgba(14,165,233,0.1)',
+    accent: '#0ea5e9',
+    motion: {
+      hover: { scale: 1.15, rotate: [0, 10, -10, 0] }
+    }
+  },
+  {
+    icon: Target,
+    title: 'Our Mission',
+    text: 'Providing resources, mentorship, and networking to help student entrepreneurs ideate, validate, and launch their ventures.',
+    borderColor: 'hover:border-emerald-500/40',
+    iconColor: 'text-emerald-400',
+    iconBg: 'bg-emerald-500/10 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]',
+    hoverGlow: 'rgba(16,185,129,0.1)',
+    accent: '#10b981',
+    motion: {
+      hover: { scale: 1.15, rotate: 360 }
+    }
+  },
+  {
+    icon: Rocket,
+    title: 'Our Goal',
+    text: 'Launch 100 student startups by 2026, creating real-world impact across technology, sustainability, and social innovation.',
+    borderColor: 'hover:border-violet-500/40',
+    iconColor: 'text-violet-400',
+    iconBg: 'bg-violet-500/10 group-hover:bg-violet-500/20 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]',
+    hoverGlow: 'rgba(139,92,246,0.1)',
+    accent: '#8b5cf6',
+    motion: {
+      hover: { x: [0, 5, -2, 4, 0], y: [0, -5, 2, -4, 0], scale: 1.15 }
+    }
+  }
 ];
 
 export default function About() {
@@ -23,6 +65,9 @@ export default function About() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-sky-500/30 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060f1e]/50 to-[#030712]" />
 
+      {/* Decorative dynamic ambient glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -31,40 +76,77 @@ export default function About() {
           animate={inView ? 'visible' : 'hidden'}
           className="text-center mb-20"
         >
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
-            <Globe size={14} /> Our Story
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-sky-500/20 text-sky-400 text-sm font-medium mb-6"
+          >
+            <Globe size={14} className="animate-rotate-slow" /> Our Story
           </motion.div>
-          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-black font-poppins mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-black font-poppins mb-6"
+          >
             <span className="text-white">Who We </span>
             <span className="gradient-text">Are</span>
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-lg text-white/50 max-w-2xl mx-auto">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-lg text-white/50 max-w-2xl mx-auto"
+          >
             A passionate community of student entrepreneurs, designers, developers, and dreamers building the next generation of startups.
           </motion.p>
         </motion.div>
 
+        {/* Vision, Mission, Goal Cards with custom glow and parent-hover triggers */}
         <div className="grid md:grid-cols-3 gap-6 mb-24">
-          {[
-            { icon: Eye, title: 'Our Vision', text: 'To become the premier entrepreneurship hub that transforms every student into a problem-solver capable of creating meaningful change.' },
-            { icon: Target, title: 'Our Mission', text: 'Providing resources, mentorship, and networking to help student entrepreneurs ideate, validate, and launch their ventures.' },
-            { icon: Rocket, title: 'Our Goal', text: 'Launch 100 student startups by 2026, creating real-world impact across technology, sustainability, and social innovation.' },
-          ].map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="glass rounded-2xl p-8 card-hover border border-white/5 hover:border-sky-500/30 group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500/20 to-sky-700/20 flex items-center justify-center mb-6 group-hover:from-sky-500/40 group-hover:to-sky-700/40 transition-all duration-300">
-                <item.icon size={22} className="text-sky-400" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 font-poppins">{item.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed">{item.text}</p>
-            </motion.div>
-          ))}
+          {CARDS.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 40 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                whileHover="hover"
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`glass rounded-2xl p-8 border border-white/5 transition-all duration-500 group relative overflow-hidden cursor-pointer ${item.borderColor}`}
+                style={{
+                  boxShadow: `hover: 0 20px 40px ${item.hoverGlow}`
+                }}
+              >
+                {/* Subtle colored glow background on hover */}
+                <div 
+                  className="absolute -right-24 -top-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none"
+                  style={{ backgroundColor: item.accent }}
+                />
+                
+                <motion.div 
+                  variants={{
+                    hover: item.motion.hover
+                  }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-all duration-500 ${item.iconBg}`}
+                >
+                  <Icon size={22} className={`${item.iconColor}`} />
+                </motion.div>
+                <h3 className="text-xl font-bold text-white mb-3 font-poppins group-hover:text-white transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                  {item.text}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
+        {/* Interactive Timeline */}
         <div ref={timelineRef} className="mb-24">
           <motion.h3
             initial={{ opacity: 0, y: 30 }}
@@ -76,7 +158,13 @@ export default function About() {
           </motion.h3>
 
           <div className="relative">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-sky-500/50 via-sky-500/20 to-transparent hidden md:block" />
+            {/* Scrolling Draw Line */}
+            <motion.div 
+              initial={{ height: 0 }}
+              animate={timelineInView ? { height: '100%' } : {}}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              className="absolute left-1/2 -translate-x-1/2 top-0 w-px bg-gradient-to-b from-sky-500 via-indigo-500 to-transparent hidden md:block" 
+            />
 
             <div className="space-y-12">
               {timeline.map((item, i) => (
@@ -88,14 +176,26 @@ export default function About() {
                   className={`flex items-center gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                    <div className="glass rounded-xl p-6 inline-block border border-white/5 hover:border-sky-500/30 transition-colors duration-300">
-                      <div className="text-sky-400 font-bold text-lg font-poppins mb-1">{item.year}</div>
+                    <motion.div 
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      transition={{ duration: 0.3 }}
+                      className="glass rounded-xl p-6 inline-block border border-white/5 hover:border-sky-500/30 hover:shadow-[0_10px_30px_rgba(14,165,233,0.1)] transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="text-sky-400 font-bold text-lg font-poppins mb-1 drop-shadow-[0_0_8px_rgba(56,189,248,0.3)]">
+                        {item.year}
+                      </div>
                       <div className="text-white font-semibold mb-2">{item.title}</div>
                       <div className="text-white/50 text-sm">{item.desc}</div>
-                    </div>
+                    </motion.div>
                   </div>
 
-                  <div className="hidden md:flex w-5 h-5 rounded-full bg-sky-500 border-4 border-[#030712] flex-shrink-0 z-10 shadow-[0_0_20px_rgba(14,165,233,0.5)]" />
+                  {/* Animate dot scale on scroll */}
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={timelineInView ? { scale: 1 } : {}}
+                    transition={{ delay: i * 0.12 + 0.3, duration: 0.4 }}
+                    className="hidden md:flex w-5 h-5 rounded-full bg-sky-500 border-4 border-[#030712] flex-shrink-0 z-10 shadow-[0_0_20px_rgba(14,165,233,0.5)]" 
+                  />
 
                   <div className="flex-1 hidden md:block" />
                 </motion.div>

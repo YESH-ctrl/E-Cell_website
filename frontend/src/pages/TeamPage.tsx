@@ -5,34 +5,35 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const currentTeam = [
-  { name: 'Rishi Srii Reddy. D', role: 'President', dept: 'CS Engineering', img: '/team/rishi_srii_reddy.jpg', linkedin: 'https://linkedin.com', email: 'rishi@gmail.com' },
-  { name: 'Sathya', role: 'Vice President', dept: 'CS Engineering(Business Systems)', img: '/team/sathya.jpg', linkedin: 'https://linkedin.com', email: 'sathya@gmail.com' },
-  { name: 'Varshith Vuppala', role: 'Finance &Documentation Head', dept: 'CS Engineering(AI/ML)', img: '/team/varshith_vuppala.jpg', linkedin: 'https://linkedin.com', email: 'varshith@gmail.com' },
-  { name: 'Vahini Bolloji ', role: 'Marketing & Outreach Head', dept: 'CS Engineering(AI/ML)', img: '/team/vahini_bolloji.jpg', linkedin: 'https://linkedin.com', email: 'vahini@gmail.com' },
-  { name: 'Siddhartha Vasireddy', role: 'Graphic Designing Head', dept: 'Electronics & Communication Engineering', img: '/team/s_vasireddy.JPG', linkedin: 'https://linkedin.com', email: 'siddhartha@gmail.com' },
-  { name: 'G.Rukmangdhar', role: 'Marketing & Outreach Team', dept: 'Electronics & Communication Engineering', img: '/team/g_rukmangdhar.jpg', linkedin: 'https://linkedin.com', email: 'rukmangdhar@gmail.com' },
-  { name: 'Dasari Yeswanth ', role: 'Public Relations Team', dept: 'AI & DS ', img: '/team/dasari_yeswanth.jpg', linkedin: 'https://linkedin.com', email: 'yeswanth@gmail.com' },
-  { name: 'Shritha Reddy', role: 'Graphic Designer', dept: 'CS Engineering(AI/ML)', img: '/team/shritha_reddy.jpg', linkedin: 'https://linkedin.com', email: 'shritha@gmail.com' },
-  { name: 'Hemanth Reddy Solipeta', role: 'Logistics Team', dept: 'CS Engineering', img: '/team/h_reddy_solipeta.jpg', linkedin: 'https://linkedin.com', email: 'hemanth@gmail.com' },
-  { name: 'Bathini Hemasree', role: 'Design Team', dept: 'AI & DS ', img: '/team/b_hemasree.jpg', linkedin: 'https://linkedin.com', email: 'hemasree@gmail.com' },
-  { name: 'M.Achsah Gideon ', role: 'Design Team ', dept: 'CS Engineering(Business Systems)', img: '/team/m_achsah_gideon.jpg', linkedin: 'https://linkedin.com', email: 'achsah@gmail.com' },
+  { name: 'Dasari Yeswanth ', role: 'President', dept: 'AI & DS ', img: '/team/dasari_yeswanth.jpg', linkedin: 'https://linkedin.com', email: 'yeswanth@gmail.com' },
+  { name: 'Bathini Hemasree', role: 'Vice President', dept: 'AI & DS ', img: '/team/b_hemasree.jpg', position: 'object-[center_20%]', linkedin: 'https://linkedin.com', email: 'hemasree@gmail.com' },
+  { name: 'Shritha Reddy', role: 'Technical Lead', dept: 'CS Engineering(AI/ML)', img: '/team/shritha_reddy.jpg', linkedin: 'https://linkedin.com', email: 'shritha@gmail.com' },
+  { name: 'Sharan gaddam ', role: 'Social Media Lead', dept: 'CS Engineering(Business Systems)', img: '/team/s_gaddam.jpg', position: 'object-[center_20%]', linkedin: 'https://linkedin.com', email: 'sharan@gmail.com' },
+  { name: 'Hiranmayi Kasturi', role: 'Video Editing Lead', dept: 'CS Engineering(Business Systems)', img: '/team/h_kasturi.jpg', position: 'object-[center_15%]', linkedin: 'https://linkedin.com', email: 'hiranmayi@gmail.com' },
+  { name: 'Gnana Keerthana', role: 'Design lead', dept: 'Biomedical Engineering', img: '/team/gnana_keerthana.jpg', linkedin: 'https://linkedin.com', email: 'keerthana@gmail.com' },
+  { name: 'Gowtham ', role: 'Treasury Lead', dept: 'MBA', img: '/team/g_gowtham.jpg', position: 'object-[center_20%]', linkedin: 'https://linkedin.com', email: 'gowtham@gmail.com' },
+  { name: 'Hemanth Reddy Solipeta', role: 'PR & Outreach Head', dept: 'CS Engineering', img: '/team/h_reddy_solipeta.jpg', linkedin: 'https://linkedin.com', email: 'hemanth@gmail.com' },
+  { name: 'Sumedh', role: 'Hospitality Lead ', dept: 'Mechanical Engineering', img: '/team/sumedh.jpg', position: 'object-[center_20%]', linkedin: 'https://linkedin.com', email: 'sumedh@gmail.com' },
+  { name: 'Pochigani Shyamsujith', role: 'Logistics Lead', dept: 'MBA', img: '/team/pochigani_shyamsujith.jpg', linkedin: 'https://linkedin.com', email: 'shyamsujith@gmail.com' },
+  { name: 'Patlolla Bhavya Sri ', role: 'Marketing Head', dept: 'CS Engineering(Business Systems)', img: '/team/p_bhavya_sri.jpg', linkedin: 'https://linkedin.com', email: 'bhavya@gmail.com' },
+  { name: 'Nissi Priya P', role: 'Documentation Head', dept: 'CS Engineering(Business Systems)', img: '/team/n_priya_p.JPG', linkedin: 'https://linkedin.com', email: 'nissi@gmail.com' },
+  { name: 'Lasya Katla', role: 'Tech Team', dept: 'Biomedical Engineering', img: '/team/l_katla.jpg', linkedin: 'https://linkedin.com', email: 'lasya@gmail.com' },
+  { name: 'M.Achsah Gideon ', role: 'Design Team ', dept: 'CS Engineering(Business Systems)', img: '/team/m_achsah_gideon.jpg', position: 'object-[center_20%]', linkedin: 'https://linkedin.com', email: 'achsah@gmail.com' },
   { name: 'N. Sri Nikhitha', role: 'Documentation Team', dept: 'CS Engineering(AI/ML)', img: '/team/n_sri_nikhitha.jpg', linkedin: 'https://linkedin.com', email: 'nikhitha@gmail.com' },
-  { name: 'Gnana Keerthana', role: 'Design Team', dept: 'Biomedical Engineering', img: '/team/gnana_keerthana.jpg', linkedin: 'https://linkedin.com', email: 'keerthana@gmail.com' },
-  { name: 'Mavuduru Venkata Bhargavi ', role: 'Documentation Team', dept: 'Electronics & Communication Engineering', img: '/team/m_venkata_bhargavi.jpg', linkedin: 'https://linkedin.com', email: 'bhargavi@gmail.com' },
-  { name: 'Sumedh', role: 'Logistics Team ', dept: 'Mechanical Engineering', img: '/team/sumedh.jpg', linkedin: 'https://linkedin.com', email: 'sumedh@gmail.com' },
-  { name: 'Pochigani Shyamsujith', role: 'Video Editor', dept: 'MBA', img: '/team/pochigani_shyamsujith.jpg', linkedin: 'https://linkedin.com', email: 'shyamsujith@gmail.com' },
   { name: 'Gadde Akshita', role: 'Documentation Team', dept: 'CS Engineering(Business Systems)', img: '/team/g_akshita.jpg', linkedin: 'https://linkedin.com', email: 'akshita@gmail.com' },
-  { name: 'Lasya Katla', role: 'Tech Team ', dept: 'Biomedical Engineering', img: '/team/l_katla.jpg', linkedin: 'https://linkedin.com', email: 'lasya@gmail.com' },
-  { name: 'Patlolla Bhavya Sri ', role: 'Design Team', dept: 'CS Engineering(Business Systems)', img: '/team/p_bhavya_sri.jpg', linkedin: 'https://linkedin.com', email: 'bhavya@gmail.com' },
-  { name: 'Nissi Priya P', role: 'Marketing Team', dept: 'CS Engineering(Business Systems)', img: '/team/n_priya_p.JPG', linkedin: 'https://linkedin.com', email: 'nissi@gmail.com' },
   { name: 'Nikita Katroju', role: 'Design Team', dept: 'CS Engineering(AI/ML)', img: '/team/n_katroju.jpg', linkedin: 'https://linkedin.com', email: 'nikita@gmail.com' },
-  { name: 'Gowtham ', role: 'Design Team', dept: 'MBA', img: '/team/g_gowtham.jpg', linkedin: 'https://linkedin.com', email: 'gowtham@gmail.com' },
-  { name: 'Lahari Raaparthi ', role: 'Tech Team', dept: 'CS Engineering(AI/ML)', img: '/team/l_raaparthi.jpg', linkedin: 'https://linkedin.com', email: 'lahari@gmail.com' },
-  { name: 'Sharan gaddam ', role: 'Video Editor', dept: 'CS Engineering(Business Systems)', img: '/team/s_gaddam.jpg', linkedin: 'https://linkedin.com', email: 'sharan@gmail.com' },
-  { name: 'Hiranmayi Kasturi', role: 'Video Editor', dept: 'CS Engineering(Business Systems)', img: '/team/h_kasturi.jpg', linkedin: 'https://linkedin.com', email: 'hiranmayi@gmail.com' },
+  { name: 'Lahari Raaparthi', role: 'Hospitality Team', dept: 'CS Engineering(AI/ML)', img: '/team/l_raaparthi.jpg', linkedin: 'https://linkedin.com', email: 'lahari@gmail.com' },
+  { name: 'Bhuvana Kommireddy', role: 'Logistics Team', dept: 'CS Engineering', img: '/team/b_kommireddy.jpg', linkedin: 'https://linkedin.com', email: 'team@gmail.com' },
+  { name: 'Bhuvana Mallavolu', role: 'Logistics Team', dept: 'AI & DS', img: '/team/b_mallavolu.jpg', linkedin: 'https://linkedin.com', email: 'team@gmail.com' },
 ];
 
 const alumni = [
+  { name: 'Rishi Srii Reddy. D', role: 'President', batch: '2026', img: '/team/rishi_srii_reddy.jpg', linkedin: 'https://linkedin.com', email: 'rishi@gmail.com' },
+  { name: 'Sathya', role: 'Vice President', batch: '2026', img: '/team/sathya.jpg', linkedin: 'https://linkedin.com', email: 'sathya@gmail.com' },
+  { name: 'Varshith Vuppala', role: 'Finance &Documentation Head', batch: '2026', img: '/team/varshith_vuppala.jpg', linkedin: 'https://linkedin.com', email: 'varshith@gmail.com' },
+  { name: 'Vahini Bolloji ', role: 'Marketing & Outreach Head', batch: '2026', img: '/team/vahini_bolloji.jpg', linkedin: 'https://linkedin.com', email: 'vahini@gmail.com' },
+  { name: 'Siddhartha Vasireddy', role: 'Graphic Designing Head', batch: '2026', img: '/team/s_vasireddy.JPG', linkedin: 'https://linkedin.com', email: 'siddhartha@gmail.com' },
+  { name: 'G.Rukmangdhar', role: 'Marketing & Outreach Team', batch: '2026', img: '/team/g_rukmangdhar.jpg', linkedin: 'https://linkedin.com', email: 'rukmangdhar@gmail.com' },
   { name: 'Chennapragada Sathvik', role: 'Founder, OLynk-AI', batch: '2026', img: '/alumni/chennapragada_sathvik.jpg', linkedin: 'https://www.linkedin.com/in/chennapragada-sathvik/', email: 'sameer@gmail.com' },
   { name: 'Gowtham Varma', role: 'Former Neemans Intern', batch: '2026', img: '/alumni/goutham_varma.jpg', linkedin: 'https://www.linkedin.com/in/gowtham-varma-28b5b7334/', email: 'Varmagowtham2004@gmail.com' },
   { name: 'Marrapu Sri Priya', role: 'Former AlignX AI Intern', batch: '2026', img: '/alumni/marrapu_sripriya.jpg', linkedin: 'https://www.linkedin.com/in/marrapu-mohana-sripriya/', email: 'marrapusripriya3@gmail.com' },
@@ -119,7 +120,7 @@ export default function TeamPage() {
                     <img
                       src={member.img}
                       alt={member.name}
-                      className="w-full h-full object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-110"
+                      className={`w-full h-full object-cover ${(member as any).position || 'object-center'} transition-transform duration-700 group-hover:scale-110`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-80" />
 

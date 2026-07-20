@@ -1,33 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { staggerContainer, fadeInUp } from '../animations/variants';
 import ThreeDLogo from './ThreeDLogo';
 
 export default function Hero() {
-  const logoRef = useRef<HTMLDivElement>(null);
-
-
-
-  useEffect(() => {
-    if (logoRef.current) {
-      gsap.fromTo(
-        logoRef.current,
-        { x: -100, opacity: 0, rotate: -10, scale: 0.8 },
-        {
-          x: 0,
-          opacity: 1,
-          rotate: 0,
-          scale: 1,
-          duration: 1.4,
-          delay: 2.5,
-          ease: 'expo.out',
-        }
-      );
-    }
-  }, []);
-
   const handleScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -48,7 +25,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             className="flex-1 text-center lg:text-left"
-            style={{ transitionDelay: '2.3s' }}
+            style={{ transitionDelay: '0.1s' }}
           >
             <motion.div
               variants={fadeInUp}
@@ -58,7 +35,7 @@ export default function Hero() {
               Entrepreneurship Cell — EST. 2019
             </motion.div>
 
-            <motion.div ref={logoRef} className="opacity-0 mb-6">
+            <div className="mb-6">
               <div className="text-4xl font-black tracking-wide font-poppins">
                 <span className="text-white">E</span>
                 <span className="gradient-text">-Cell</span>
@@ -66,7 +43,7 @@ export default function Hero() {
               <div className="text-xs text-sky-400/70 tracking-[0.3em] uppercase mt-1">
                 Entrepreneurship Cell
               </div>
-            </motion.div>
+            </div>
 
             <motion.h1
               variants={fadeInUp}
@@ -90,12 +67,12 @@ export default function Hero() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button
-                onClick={() => handleScroll('join')}
+              <Link
+                to="/join"
                 className="btn-primary flex items-center gap-2 justify-center"
               >
                 Join Us <ArrowRight size={16} />
-              </button>
+              </Link>
               <button
                 onClick={() => handleScroll('initiatives')}
                 className="btn-secondary flex items-center gap-2 justify-center"
@@ -125,7 +102,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 2.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="hidden lg:block flex-shrink-0 relative w-[600px] h-[600px]"
           >
             <ThreeDLogo />
@@ -136,7 +113,7 @@ export default function Hero() {
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 4, duration: 0.8 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
         onClick={() => handleScroll('about')}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 hover:text-sky-400 transition-colors"
       >

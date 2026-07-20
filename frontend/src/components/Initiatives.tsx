@@ -35,21 +35,6 @@ const initiatives = [
     image: '/initiatives/emerge.jpg',
   },
   {
-    icon: Code2,
-    title: 'Pivot',
-    category: 'Hackathon',
-    color: 'from-sky-400/20 to-sky-600/20',
-    accent: '#38bdf8',
-    badge: '24-Hours',
-    tagline: 'Innovate. Build. Pivot.',
-    description:
-      'This is the 24 hrs hackathon which is specifically designed for the 3rd year students to showcase their technical prowess.',
-    details: ['24-hour Hackathon', 'For 3rd Years', 'Technical Challenge', 'Problem Solving'],
-    date: 'TBA',
-    location: 'BVRIT Narsapur campus',
-    image: '/initiatives/pivot.jpg',
-  },
-  {
     icon: Lightbulb,
     title: 'BEST',
     category: 'Ecosystem',

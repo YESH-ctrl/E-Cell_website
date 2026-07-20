@@ -28,22 +28,6 @@ const SPEAKERS = [
     linkedin: 'https://www.linkedin.com/in/dr-m-k-kaushik-a6580b33/',
   },
   {
-    name: 'Shivam Gupta',
-    role: 'CEO - The Affordable Organic Store',
-    image: '/speakers/shivam_gupta.jpg',
-    topic: 'Starups and Sustainability',
-    year: '2025',
-    linkedin: 'https://www.linkedin.com/in/shivamgupta111/',
-  },
-  {
-    name: 'Karthik Reddy ',
-    role: 'Co-Founder, Tikaana Coliving',
-    image: '/speakers/karthik_reddy.jpg',
-    topic: 'Campus to Commerce',
-    year: '2025',
-    linkedin: 'https://www.linkedin.com/in/karthik-reddy-9056622/',
-  },
-  {
     name: 'Sahil Raj Suman ',
     role: 'Communications Lead - TGIC',
     image: '/speakers/sahil_raj_suman.jpg',
