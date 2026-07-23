@@ -3,18 +3,50 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, Images } from 'lucide-react';
 import { staggerContainer, fadeInUp } from '../animations/variants';
 
-const images = [
-  { src: '/gallery/hacksprint_2024.JPG', caption: 'HackSprint 2024', span: 'col-span-2 row-span-2' },
-  { src: '/gallery/founderclass_workshop.JPG', caption: 'FounderClass Workshop', span: '' },
-  { src: '/gallery/team_collaboration.JPG', caption: 'Team Collaboration', span: '' },
-  { src: '/gallery/e_summit_2024.JPG', caption: 'E-Summit 2024', span: '' },
-  { src: '/gallery/launchpad_demo_day.JPG', caption: 'LaunchPad Demo Day', span: 'col-span-2' },
-  { src: '/gallery/ideation_session.JPG', caption: 'Ideation Session', span: '' },
-  { src: '/gallery/coding_marathon.JPG', caption: 'Coding Marathon', span: '' },
-  { src: '/gallery/startup_pitch_night.JPG', caption: 'Startup Pitch Night', span: '' },
-  { src: '/gallery/networking_event.JPG', caption: 'Networking Event', span: 'col-span-2' },
-  { src: '/gallery/mentorconnect_session.JPG', caption: 'MentorConnect Session', span: '' },
+// -- Gallery Sections --
+// Each section has a title and its own set of images.
+// Add/replace image paths here — just drop matching files into /public/gallery/
+const sections = [
+ 
+  {
+    title: 'E-Summit 2026',
+    images: [
+      { src: '/gallery/Inauguration.jpeg', caption: 'E-Summit 2026' },
+      { src: '/gallery/Esummitimage2.jpeg', caption: 'E-Summit 2026' },
+      { src: '/gallery/founderclass_workshop.JPG', caption: 'E-Summit 2026' },
+      { src: '/gallery/hacksprint_2024.JPG', caption: 'E-Summit 2026' },
+      { src: '/gallery/launchpad_demo_day.JPG', caption: 'E-Summit 2026' },
+      { src: '/gallery/e_summit_2024.JPG', caption: 'E-Summit 2026' },
+    ]
+  },
+  {
+    title: 'E-Merge',
+    images: [
+      { src: '/gallery/EMERGE1.jpeg', caption: 'E-Merge' },
+      { src: '/gallery/EMERGE2.jpeg', caption: 'E-Merge' },
+      { src: '/gallery/EMERGE3.jpeg', caption: 'E-Merge' },
+    ]
+  },
+  {
+    title: 'Campus Visits',
+    images: [
+      { src: '/gallery/IITH.jpeg', caption: 'IIT Hyderabad' },
+      { src: '/gallery/IITB.jpeg', caption: 'IIT Bombay' },
+    ]
+  }
 ];
+
+// Flatten all images into a single array for lightbox prev/next navigation
+const allImages = sections.flatMap((section) => section.images);
+
+// Get the starting index (in allImages) for a given section
+function getSectionStartIndex(sectionIndex: number) {
+  let start = 0;
+  for (let i = 0; i < sectionIndex; i++) {
+    start += sections[i].images.length;
+  }
+  return start;
+}
 
 export default function Gallery() {
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -23,8 +55,8 @@ export default function Gallery() {
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') setLightbox(null);
-    if (e.key === 'ArrowRight' && lightbox !== null) setLightbox((lightbox + 1) % images.length);
-    if (e.key === 'ArrowLeft' && lightbox !== null) setLightbox((lightbox - 1 + images.length) % images.length);
+    if (e.key === 'ArrowRight' && lightbox !== null) setLightbox((lightbox + 1) % allImages.length);
+    if (e.key === 'ArrowLeft' && lightbox !== null) setLightbox((lightbox - 1 + allImages.length) % allImages.length);
   };
 
   return (
@@ -52,34 +84,57 @@ export default function Gallery() {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] gap-3">
-          {images.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative overflow-hidden rounded-xl group cursor-pointer ${img.span}`}
-              onClick={() => setLightbox(i)}
-            >
-              <img
-                src={img.src}
-                alt={img.caption}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              <div className="absolute inset-0 bg-sky-500/0 group-hover:bg-sky-500/10 transition-all duration-500" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                <div className="text-white text-sm font-medium">{img.caption}</div>
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
-                <div className="w-12 h-12 rounded-full bg-sky-500/30 backdrop-blur-sm flex items-center justify-center border border-sky-400/40">
-                  <ZoomIn size={20} className="text-white" />
+        {/* -- Render each section -- */}
+        <div className="space-y-16">
+          {sections.map((section, sectionIndex) => {
+            const startIndex = getSectionStartIndex(sectionIndex);
+            return (
+              <div key={section.title}>
+                <motion.h3
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+                  className="text-2xl md:text-3xl font-bold font-poppins text-white mb-6 flex items-center gap-3"
+                >
+                  <span className="w-1.5 h-6 rounded-full bg-gradient-to-b from-sky-400 to-indigo-500" />
+                  {section.title}
+                </motion.h3>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[220px] gap-3">
+                  {section.images.map((img, i) => {
+                    const globalIndex = startIndex + i;
+                    return (
+                      <motion.div
+                        key={img.src}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={inView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ delay: i * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative overflow-hidden rounded-xl group cursor-pointer"
+                        onClick={() => setLightbox(globalIndex)}
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.caption}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                        <div className="absolute inset-0 bg-sky-500/0 group-hover:bg-sky-500/10 transition-all duration-500" />
+                        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                          <div className="text-white text-sm font-medium">{img.caption}</div>
+                        </div>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
+                          <div className="w-12 h-12 rounded-full bg-sky-500/30 backdrop-blur-sm flex items-center justify-center border border-sky-400/40">
+                            <ZoomIn size={20} className="text-white" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -104,12 +159,12 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={images[lightbox].src}
-                alt={images[lightbox].caption}
+                src={allImages[lightbox].src}
+                alt={allImages[lightbox].caption}
                 className="w-full max-h-[80vh] object-contain rounded-2xl"
               />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 glass px-4 py-2 rounded-full text-white/80 text-sm">
-                {images[lightbox].caption}
+                {allImages[lightbox].caption}
               </div>
               <button
                 onClick={() => setLightbox(null)}
@@ -125,7 +180,7 @@ export default function Gallery() {
                   ‹
                 </button>
               )}
-              {lightbox < images.length - 1 && (
+              {lightbox < allImages.length - 1 && (
                 <button
                   onClick={() => setLightbox(lightbox + 1)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass flex items-center justify-center text-white hover:text-sky-400 transition-colors border border-white/10"

@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   Target, Eye, Rocket, Globe, Code, Megaphone,
   Handshake, Calendar, DollarSign, Lightbulb,
-  ArrowRight, Award, Users, ChevronRight, Zap
+  ArrowRight, Award, Users, ChevronRight, Zap,
+  CheckCircle2, ChevronDown
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -21,46 +22,115 @@ const timeline = [
   { year: '2025/2026', title: 'BEST Ecosystem', desc: 'Pioneered the Business & Entrepreneurship Student Team initiatives.' },
 ];
 
-// -- Core Cards (Vision, Mission, Goal) --
-const VALUES = [
+// -- Path bullet points (used inside "Our Mission" card) --
+const PATH_POINTS = [
+  "Planning the club's annual activities in advance with clearly defined goals, timelines, and responsibilities.",
+  "Conducting entrepreneurship events that focus on practical learning and real-world problem solving.",
+  "Building collaborations with startups, industries, alumni, and entrepreneurship communities to create meaningful opportunities for students.",
+  "Maintaining transparency in planning, finances, sponsorships, and decision-making.",
+  "Encouraging every team member to take ownership of their responsibilities and contribute towards the club's growth.",
+  "Preserving documentation and institutional knowledge so that every committee builds upon the work of the previous one."
+];
+[[]]
+// -- Promise items (used inside "Our Objective" card) --
+const PROMISE_ITEMS = [
   {
-    icon: Eye,
-    title: 'Our Vision',
-    text: 'To become the premier entrepreneurship hub that transforms every student into a problem-solver capable of creating meaningful change.',
-    borderColor: 'hover:border-sky-500/40',
-    iconColor: 'text-sky-400',
-    iconBg: 'bg-sky-500/10 group-hover:bg-sky-500/20 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]',
-    hoverGlow: 'rgba(14,165,233,0.1)',
-    accent: '#0ea5e9',
-    motion: {
-      hover: { scale: 1.05, rotate: [0, 2, -2, 0] }
-    }
+    title: 'Plan Before Execution',
+    desc: 'Every event should begin with a clear purpose and execution plan before registrations or promotions start.',
+    implementation: [
+      'Annual academic calendar released before the end of July.',
+      'Event proposal prepared before every event.',
+      'Budget, venue, sponsorship plan, timeline, and responsibilities finalized in advance.'
+    ]
   },
   {
-    icon: Target,
-    title: 'Our Mission',
-    text: 'Providing resources, mentorship, and networking to help student entrepreneurs ideate, validate, and launch their ventures.',
-    borderColor: 'hover:border-emerald-500/40',
-    iconColor: 'text-emerald-400',
-    iconBg: 'bg-emerald-500/10 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]',
-    hoverGlow: 'rgba(16,185,129,0.1)',
-    accent: '#10b981',
-    motion: {
-      hover: { scale: 1.05, rotate: [0, 5, -5, 0] }
-    }
+    title: 'Build a Culture of Accountability',
+    desc: 'Every Executive Committee member should know what they are responsible for and deliver it on time.',
+    implementation: [
+      'Clearly defined roles and responsibilities.',
+      'Weekly Executive Committee review meetings.',
+      'Task tracker with deadlines.',
+      'Responsibilities reassigned if commitments are repeatedly not met.'
+    ]
   },
   {
-    icon: Rocket,
-    title: 'Our Goal',
-    text: 'Launch 100 student startups by 2026, creating real-world impact across technology, sustainability, and social innovation.',
-    borderColor: 'hover:border-violet-500/40',
-    iconColor: 'text-violet-400',
-    iconBg: 'bg-violet-500/10 group-hover:bg-violet-500/20 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]',
-    hoverGlow: 'rgba(139,92,246,0.1)',
-    accent: '#8b5cf6',
-    motion: {
-      hover: { scale: 1.05, y: -5 }
-    }
+    title: 'Maintain Transparency',
+    desc: 'Important decisions should never depend on a single individual.',
+    implementation: [
+      'Meeting minutes shared with the Executive Committee.',
+      'Financial records maintained after every event.',
+      'Sponsorships and collaborations communicated to the team.',
+      'Decisions documented for future reference.'
+    ]
+  },
+  {
+    title: 'Deliver High-Quality Events',
+    desc: 'Focus on quality rather than quantity.',
+    implementation: [
+      'Every event should have defined learning outcomes.',
+      'Post-event review after every major activity.',
+      'Participant feedback collected and analysed.',
+      'Event reports prepared within one week.'
+    ]
+  },
+  {
+    title: 'Strengthen Industry & Startup Connections',
+    desc: 'The E-Cell should become a bridge between students and the entrepreneurial ecosystem.',
+    implementation: [
+      'Invite founders, entrepreneurs, and alumni regularly.',
+      'Build partnerships with startups and incubators.',
+      'Seek sponsorships that add value to participants.',
+      'Collaborate with E-Cells from other institutions.'
+    ]
+  },
+  {
+    title: 'Promote Equal Opportunity',
+    desc: 'Leadership opportunities should be based on contribution rather than personal preference.',
+    implementation: [
+      'No personal bias in assigning responsibilities.',
+      'Transparent volunteer and coordinator selection.',
+      'Recognition based on work and commitment.',
+      'Encourage participation from students across all branches.'
+    ]
+  },
+  {
+    title: 'Improve Communication',
+    desc: 'Information should always be shared before it becomes a problem.',
+    implementation: [
+      'Weekly updates from every lead.',
+      'Shared documentation for ongoing work.',
+      'Monthly review with faculty coordinator.'
+    ]
+  },
+  {
+    title: 'Ensure Financial Discipline',
+    desc: 'Every rupee spent by the club should be accounted for.',
+    implementation: [
+      'Event budgets approved before execution.',
+      'Expense records maintained with bills.',
+      'Sponsorship income documented.',
+      'Financial report submitted after every major event.'
+    ]
+  },
+  {
+    title: 'Build Future Leaders',
+    desc: 'Every batch should prepare the next batch.',
+    implementation: [
+      'Junior team mates involved in organizing events.',
+      'Internal knowledge-sharing sessions.',
+      'Leadership opportunities for active members.',
+      'Structured handover at the end of every tenure.'
+    ]
+  },
+  {
+    title: 'Create Sustainable Systems',
+    desc: 'The club should improve every year without starting from scratch.',
+    implementation: [
+      'Documentation for every event.',
+      'Sponsor database maintained.',
+      'Event templates, budgets, and designs archived.',
+      'Standard Operating Procedures (SOPs) created for recurring activities.'
+    ]
   }
 ];
 
@@ -147,6 +217,7 @@ const INCUBATION_STEPS = [
 
 export default function AboutPage() {
   const navigate = useNavigate();
+  const [openPromise, setOpenPromise] = useState<number | null>(null);
 
   // Section refs for scroll tracking & entrance animations
   const statsRef = useRef(null);
@@ -241,7 +312,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* -- Core Values (Vision, Mission, Goal) -- */}
+        {/* -- Our Vision (Purpose) / Our Mission (Path) / Our Objective (Promise) -- */}
         <section ref={valuesRef} className="section-padding px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -253,39 +324,165 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {VALUES.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={valuesInView ? { opacity: 1, y: 0 } : {}}
-                    whileHover="hover"
-                    transition={{ delay: i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className={`glass rounded-2xl p-8 border border-white/5 transition-all duration-500 group relative overflow-hidden cursor-pointer ${item.borderColor}`}
-                  >
-                    <div
-                      className="absolute -right-24 -top-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                      style={{ backgroundColor: item.accent }}
-                    />
+            <div className="grid md:grid-cols-3 gap-6 items-start">
 
-                    <motion.div
-                      variants={{ hover: item.motion.hover }}
-                      transition={{ duration: 0.4, ease: 'easeOut' }}
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-all duration-500 ${item.iconBg}`}
-                    >
-                      <Icon size={22} className={`${item.iconColor}`} />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-white mb-3 font-poppins">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
+              {/* Card 1 -- Our Vision / Purpose */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="glass rounded-2xl p-8 border border-white/5 hover:border-sky-500/40 transition-all duration-500 group relative overflow-hidden h-full"
+              >
+                <div
+                  className="absolute -right-24 -top-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
+                  style={{ backgroundColor: '#0ea5e9' }}
+                />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.3)] transition-all duration-500">
+                    <Eye size={22} />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-sky-400/70 px-3 py-1 rounded-full bg-sky-500/10">
+                    Purpose
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 font-poppins">
+                  Our Vision
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                  To build a transparent, student-driven entrepreneurial ecosystem that develops future
+                  innovators and leaders through structured planning, practical learning, industry
+                  collaboration, and responsible leadership, while ensuring equal opportunities for
+                  every member to learn, contribute, and grow.
+                </p>
+              </motion.div>
+
+              {/* Card 2 -- Our Mission / Path */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="glass rounded-2xl p-8 border border-white/5 hover:border-emerald-500/40 transition-all duration-500 group relative overflow-hidden h-full"
+              >
+                <div
+                  className="absolute -right-24 -top-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
+                  style={{ backgroundColor: '#10b981' }}
+                />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-500">
+                    <Target size={22} />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-400/70 px-3 py-1 rounded-full bg-emerald-500/10">
+                    Path
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 font-poppins">
+                  Our Mission
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300 mb-4">
+                  The Entrepreneurship Cell is committed to building a culture where ideas are
+                  transformed into action through disciplined planning, teamwork, and accountability.
+                </p>
+                <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1 custom-scrollbar">
+                  {PATH_POINTS.map((point, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                      <p className="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Card 3 -- Our Objective / Promise */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="glass rounded-2xl p-8 border border-white/5 hover:border-violet-500/40 transition-all duration-500 group relative overflow-hidden h-full"
+              >
+                <div
+                  className="absolute -right-24 -top-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
+                  style={{ backgroundColor: '#8b5cf6' }}
+                />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-violet-500/10 text-violet-400 group-hover:bg-violet-500/20 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all duration-500">
+                    <Rocket size={22} />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-violet-400/70 px-3 py-1 rounded-full bg-violet-500/10">
+                    Promise
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 font-poppins">
+                  Our Objective
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300 mb-4">
+                  Ten commitments that keep every event, decision, and rupee accountable —
+                  click any to see how we put it into practice.
+                </p>
+
+                <div className="space-y-1.5 max-h-52 overflow-y-auto pr-1 custom-scrollbar">
+                  {PROMISE_ITEMS.map((item, i) => {
+                    const isOpen = openPromise === i;
+                    return (
+                      <div
+                        key={item.title}
+                        className="border border-white/5 rounded-lg overflow-hidden hover:border-violet-500/20 transition-colors duration-300"
+                      >
+                        <button
+                          onClick={() => setOpenPromise(isOpen ? null : i)}
+                          className="w-full flex items-center justify-between gap-2 px-3 py-2 text-left"
+                        >
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-violet-400/60 font-bold font-poppins text-[10px] flex-shrink-0">
+                              {String(i + 1).padStart(2, '0')}
+                            </span>
+                            <span className="text-white/80 font-medium text-xs truncate">
+                              {item.title}
+                            </span>
+                          </div>
+                          <motion.div
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown size={14} className="text-white/30 flex-shrink-0" />
+                          </motion.div>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: 'easeInOut' }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-3 pb-3">
+                                <p className="text-white/50 text-xs leading-relaxed mb-2">
+                                  {item.desc}
+                                </p>
+                                <p className="text-white/30 text-[10px] uppercase tracking-wider font-semibold mb-1.5">
+                                  Implementation
+                                </p>
+                                <div className="space-y-1.5">
+                                  {item.implementation.map((point, j) => (
+                                    <div key={j} className="flex items-start gap-1.5">
+                                      <div className="w-1 h-1 rounded-full bg-violet-400 mt-1.5 flex-shrink-0" />
+                                      <p className="text-white/45 text-xs leading-relaxed">{point}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </section>
