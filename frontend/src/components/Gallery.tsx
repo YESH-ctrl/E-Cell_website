@@ -32,6 +32,7 @@ const sections = [
     images: [
       { src: '/gallery/IITH.jpeg', caption: 'IIT Hyderabad' },
       { src: '/gallery/IITB.jpeg', caption: 'IIT Bombay' },
+      { src: '/gallery/IITM.jpeg', caption: 'IIT Madras' },
     ]
   }
 ];
