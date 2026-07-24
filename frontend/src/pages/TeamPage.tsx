@@ -28,16 +28,16 @@ const currentTeam = [
 ];
 
 const alumni = [
-  { name: 'Rishi Srii Reddy. D', role: 'Student Leads', batch: '2026', img: '/team/rishi_srii_reddy.jpg', linkedin: 'https://linkedin.com', email: 'rishi@gmail.com' },
-  { name: 'Sathya', role: 'Student Leads', batch: '2026', img: '/team/sathya.jpg', linkedin: 'https://linkedin.com', email: 'sathya@gmail.com' },
-  { name: 'Varshith Vuppala', role: 'Student Leads', batch: '2026', img: '/team/varshith_vuppala.jpg', linkedin: 'https://linkedin.com', email: 'varshith@gmail.com' },
-  { name: 'Vahini Bolloji ', role: 'Student Leads', batch: '2026', img: '/team/vahini_bolloji.jpg', linkedin: 'https://linkedin.com', email: 'vahini@gmail.com' },
-  { name: 'Siddhartha Vasireddy', role: 'Student Leads', batch: '2026', img: '/team/s_vasireddy.JPG', linkedin: 'https://linkedin.com', email: 'siddhartha@gmail.com' },
-  { name: 'G.Rukmangdhar', role: 'Student Leads', batch: '2026', img: '/team/g_rukmangdhar.jpg', linkedin: 'https://linkedin.com', email: 'rukmangdhar@gmail.com' },
-  { name: 'Chennapragada Sathvik', role: 'Student Leads', batch: '2026', img: '/alumni/chennapragada_sathvik.jpg', linkedin: 'https://www.linkedin.com/in/chennapragada-sathvik/', email: 'sameer@gmail.com' },
-  { name: 'Gowtham Varma', role: 'Student Leads', batch: '2026', img: '/alumni/goutham_varma.jpg', linkedin: 'https://www.linkedin.com/in/gowtham-varma-28b5b7334/', email: 'Varmagowtham2004@gmail.com' },
-  { name: 'Marrapu Sri Priya', role: 'Student Leads', batch: '2026', img: '/alumni/marrapu_sripriya.jpg', linkedin: 'https://www.linkedin.com/in/marrapu-mohana-sripriya/', email: 'marrapusripriya3@gmail.com' },
-  { name: 'Kachireddy Pavitranath Reddy', role: 'Student Leads', batch: '2026', img: '/alumni/kachireddy_pavitranath_reddy.jpg', linkedin: 'https://www.linkedin.com/in/kachi-reddy-pavitranath-reddy-0ab56429b/', email: 'pavitranath@gmail.com' },
+  { name: 'Rishi Srii Reddy. D', role: 'Student Lead', batch: '2027', img: '/team/rishi_srii_reddy.jpg', linkedin: 'https://linkedin.com', email: 'rishi@gmail.com' },
+  { name: 'Sathya', role: 'Student Lead', batch: '2027', img: '/team/sathya.jpg', linkedin: 'https://linkedin.com', email: 'sathya@gmail.com' },
+  { name: 'Varshith Vuppala', role: 'Student Lead', batch: '2027', img: '/team/varshith_vuppala.jpg', linkedin: 'https://linkedin.com', email: 'varshith@gmail.com' },
+  { name: 'Vahini Bolloji ', role: 'Student Lead', batch: '2027', img: '/team/vahini_bolloji.jpg', linkedin: 'https://linkedin.com', email: 'vahini@gmail.com' },
+  { name: 'Siddhartha Vasireddy', role: 'Student Lead', batch: '2027', img: '/team/s_vasireddy.JPG', linkedin: 'https://linkedin.com', email: 'siddhartha@gmail.com' },
+  { name: 'G.Rukmangdhar', role: 'Student Lead', batch: '2027', img: '/team/g_rukmangdhar.jpg', linkedin: 'https://linkedin.com', email: 'rukmangdhar@gmail.com' },
+  { name: 'Chennapragada Sathvik', role: 'Student Lead', batch: '2026', img: '/alumni/chennapragada_sathvik.jpg', linkedin: 'https://www.linkedin.com/in/chennapragada-sathvik/', email: 'sameer@gmail.com' },
+  { name: 'Gowtham Varma', role: 'Student Lead', batch: '2026', img: '/alumni/goutham_varma.jpg', linkedin: 'https://www.linkedin.com/in/gowtham-varma-28b5b7334/', email: 'Varmagowtham2004@gmail.com' },
+  { name: 'Marrapu Sri Priya', role: 'Student Lead', batch: '2026', img: '/alumni/marrapu_sripriya.jpg', linkedin: 'https://www.linkedin.com/in/marrapu-mohana-sripriya/', email: 'marrapusripriya3@gmail.com' },
+  { name: 'Kachireddy Pavitranath Reddy', role: 'Student Lead', batch: '2026', img: '/alumni/kachireddy_pavitranath_reddy.jpg', linkedin: 'https://www.linkedin.com/in/kachi-reddy-pavitranath-reddy-0ab56429b/', email: 'pavitranath@gmail.com' },
 ];
 
 export default function TeamPage() {
