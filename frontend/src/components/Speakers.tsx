@@ -77,7 +77,7 @@ export default function Speakers() {
           </motion.p>
         </div>
 
-        <div className="h-[600px] relative">
+        <div className="h-[400px] sm:h-[500px] md:h-[600px] relative">
           <CircularGallery 
             items={SPEAKERS.map(s => ({ image: s.image, text: s.name }))}
             bend={3}

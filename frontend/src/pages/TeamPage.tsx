@@ -103,7 +103,7 @@ export default function TeamPage() {
           {/* Team Grid */}
           <motion.div
             layout
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             <AnimatePresence mode="wait">
               {(tab === 'current' ? currentTeam : alumni).map((member, i) => (
@@ -124,8 +124,8 @@ export default function TeamPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-80" />
 
-                    {/* Socials Overlay */}
-                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    {/* Socials Overlay — Always visible on touch, hover trigger on desktop */}
+                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-4 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 transition-all duration-500">
                       <div className="flex gap-2">
                         <a
                           href={(member as any).linkedin}
@@ -148,7 +148,7 @@ export default function TeamPage() {
                     </div>
                   </div>
 
-                  <div className="p-8">
+                  <div className="p-6 sm:p-8">
                     <h3 className="text-xl font-bold text-white font-poppins mb-1 group-hover:text-sky-400 transition-colors">
                       {member.name}
                     </h3>

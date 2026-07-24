@@ -47,7 +47,7 @@ export default function Hero() {
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.05] mb-6 font-poppins"
+              className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.1] sm:leading-[1.05] mb-6 font-poppins"
             >
               <span className="text-white">Empowering</span>
               <br />
@@ -60,7 +60,7 @@ export default function Hero() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-lg text-white/50 max-w-xl mb-10 leading-relaxed"
+              className="text-base sm:text-lg text-white/50 max-w-xl mb-8 sm:mb-10 leading-relaxed"
             >
               A community of driven students transforming ideas into ventures.
               We fuel startups, host hackathons, and build tomorrow's leaders — today.
@@ -83,7 +83,7 @@ export default function Hero() {
 
             <motion.div
               variants={fadeInUp}
-              className="flex items-center gap-12 mt-14 justify-center lg:justify-start"
+              className="grid grid-cols-2 sm:flex items-center gap-6 sm:gap-10 md:gap-12 mt-10 sm:mt-14 justify-center lg:justify-start"
             >
               {[
                 { num: '200+', label: 'Members' },
@@ -92,8 +92,8 @@ export default function Hero() {
                 { num: '5+', label: 'Years' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-black gradient-text font-poppins">{stat.num}</div>
-                  <div className="text-xs text-white/40 mt-0.5 tracking-wider uppercase">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl font-black gradient-text font-poppins">{stat.num}</div>
+                  <div className="text-[10px] sm:text-xs text-white/40 mt-0.5 tracking-wider uppercase">{stat.label}</div>
                 </div>
               ))}
             </motion.div>

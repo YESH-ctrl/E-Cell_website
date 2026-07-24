@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider }     from './contexts/AuthContext';
 import ProtectedRoute       from './components/ProtectedRoute';
 import GlobalBackground     from './components/GlobalBackground';
-import CustomCursor         from './components/CustomCursor';
 import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import About                from './components/About';
@@ -61,7 +60,6 @@ export default function App() {
     <AuthProvider>
       <Router>
         <GlobalBackground />
-        <CustomCursor />
 
         <motion.div
           initial={{ opacity: 0 }}
