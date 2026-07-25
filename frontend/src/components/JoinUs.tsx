@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, CheckCircle, UserPlus, User, ClipboardList, Layers, FileText } from 'lucide-react';
 
 const domains = [
+  'PR & Sponsorship',
+  'Documentation',
   'Marketing',
-  'Operations',
-  'Content & Branding',
-  'Technology',
-  'Startup Research',
-  'Partnerships & Outreach',
-  'Events & Experiences',
-  'Finance',
-  'Talent & Recruitment'
+  'Social Media',
+  'GD',
+  'Logistics',
+  'Treasury',
+  'Hospitality',
+  'Technical',
+  'Video Editing'
 ];
 
 const descriptors = [
