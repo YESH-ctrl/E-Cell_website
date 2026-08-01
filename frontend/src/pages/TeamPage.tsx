@@ -38,6 +38,8 @@ const alumni = [
   { name: 'Gowtham Varma', role: 'Student Lead', batch: '2026', img: '/alumni/goutham_varma.jpg', linkedin: 'https://www.linkedin.com/in/gowtham-varma-28b5b7334/', email: 'Varmagowtham2004@gmail.com' },
   { name: 'Marrapu Sri Priya', role: 'Student Lead', batch: '2026', img: '/alumni/marrapu_sripriya.jpg', linkedin: 'https://www.linkedin.com/in/marrapu-mohana-sripriya/', email: 'marrapusripriya3@gmail.com' },
   { name: 'Kachireddy Pavitranath Reddy', role: 'Student Lead', batch: '2026', img: '/alumni/kachireddy_pavitranath_reddy.jpg', linkedin: 'https://www.linkedin.com/in/kachi-reddy-pavitranath-reddy-0ab56429b/', email: 'pavitranath@gmail.com' },
+  { name: 'Abhigna Rachuri', role: 'Student Lead', batch: '2026', img: '/alumni/Abhigna.jpeg', linkedin: 'https://linkedin.com', email: 'abhigna@gmail.com' },
+  { name: 'Anougna Routu', role: 'Student Lead', batch: '2026', img: '/alumni/Anougna.jpeg', linkedin: 'https://linkedin.com', email: 'anougna@gmail.com' },
 ];
 
 export default function TeamPage() {
