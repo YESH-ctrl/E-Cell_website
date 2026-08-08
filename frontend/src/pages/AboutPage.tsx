@@ -639,14 +639,8 @@ export default function AboutPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <button
-                onClick={() => navigate('/join')}
-                className="btn-primary flex items-center gap-2 justify-center"
-              >
-                Apply to Join E-Cell <ArrowRight size={16} />
-              </button>
-              <button
                 onClick={handleContactClick}
-                className="btn-secondary flex items-center gap-2 justify-center"
+                className="btn-primary flex items-center gap-2 justify-center"
               >
                 Get in Touch <ChevronRight size={16} />
               </button>

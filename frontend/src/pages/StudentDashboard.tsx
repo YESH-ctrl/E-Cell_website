@@ -100,26 +100,7 @@ export default function StudentDashboard() {
           </div>
         </motion.div>
 
-        {/* ── Bottom: Apply CTA — clean, full-width ───────────────────────── */}
-        <motion.div {...fadeUp(0.35)} className="mt-12">
-          <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-gradient-to-r from-violet-900/25 via-indigo-900/15 to-sky-900/15 px-8 py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-            {/* Subtle glow */}
-            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-violet-500/10 blur-3xl pointer-events-none" />
 
-            <div className="relative">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-violet-400/80 font-semibold mb-1">Ready to lead?</p>
-              <h3 className="text-white font-bold text-lg font-poppins">Apply to join E-Cell</h3>
-              <p className="text-white/35 text-sm mt-1">Become a member and shape the entrepreneurship culture on campus.</p>
-            </div>
-
-            <Link
-              to="/join"
-              className="relative flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#030712] font-bold text-sm transition-all hover:bg-white/90 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] shrink-0"
-            >
-              Apply Now <ArrowRight size={15} />
-            </Link>
-          </div>
-        </motion.div>
 
       </main>
     </div>

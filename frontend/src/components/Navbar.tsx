@@ -77,16 +77,6 @@ export default function Navbar() {
     }
   };
 
-  const handleJoinClick = () => {
-    setMobileOpen(false);
-    if (!currentUser) {
-      navigate('/login');
-      return;
-    }
-    navigate('/join');
-    window.scrollTo(0, 0);
-  };
-
   const handleSignOut = async () => {
     setAvatarOpen(false);
     await logOut();
@@ -166,15 +156,8 @@ export default function Navbar() {
               );
             })}
 
-            {/* Join Us CTA — shows when logged in; Sign In when logged out */}
-            {currentUser ? (
-              <button
-                onClick={handleJoinClick}
-                className="btn-primary text-sm px-5 py-2.5"
-              >
-                Join Us
-              </button>
-            ) : (
+            {/* Sign In CTA — shows when logged out */}
+            {!currentUser && (
               <Link
                 to="/login"
                 className="btn-primary text-sm px-5 py-2.5"
@@ -306,20 +289,13 @@ export default function Navbar() {
               );
             })}
 
-            {/* Mobile Join Us / Sign In */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              {currentUser ? (
-                <button
-                  onClick={handleJoinClick}
-                  className="btn-primary mt-2"
-                >
-                  Join Us
-                </button>
-              ) : (
+            {/* Mobile Sign In */}
+            {!currentUser && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
                 <Link
                   to="/login"
                   onClick={() => setMobileOpen(false)}
@@ -327,8 +303,8 @@ export default function Navbar() {
                 >
                   Sign In
                 </Link>
-              )}
-            </motion.div>
+              </motion.div>
+            )}
 
             {/* Mobile auth actions */}
             {currentUser && (

@@ -6,7 +6,6 @@ const navLinks = [
   { name: 'Initiatives', href: '/initiatives' },
   { name: 'Gallery',     href: '/gallery' },
   { name: 'Team',        href: '/team' },
-  { name: 'Join Us',     href: '/join' },
 ];
 
 const socials = [

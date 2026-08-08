@@ -67,18 +67,18 @@ export default function Hero() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link
-                to="/join"
-                className="btn-primary flex items-center gap-2 justify-center"
-              >
-                Join Us <ArrowRight size={16} />
-              </Link>
               <button
                 onClick={() => handleScroll('initiatives')}
+                className="btn-primary flex items-center gap-2 justify-center"
+              >
+                Explore Initiatives <ArrowRight size={16} />
+              </button>
+              <Link
+                to="/about"
                 className="btn-secondary flex items-center gap-2 justify-center"
               >
-                Explore Initiatives
-              </button>
+                About Us
+              </Link>
             </motion.div>
 
             <motion.div
