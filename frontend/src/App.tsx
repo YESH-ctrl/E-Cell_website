@@ -9,6 +9,7 @@ import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import About                from './components/About';
 import Initiatives          from './components/Initiatives';
+import ResourcesSection    from './components/ResourcesSection';
 import Contact              from './components/Contact';
 import Footer               from './components/Footer';
 import Login                from './pages/Login';
@@ -23,6 +24,8 @@ import ChangePassword       from './pages/ChangePassword';
 import Speakers             from './components/Speakers';
 import InitiativesPage      from './pages/InitiativesPage';
 import AboutPage            from './pages/AboutPage';
+import ResourcesPage        from './pages/ResourcesPage';
+import BlogPostPage         from './pages/BlogPostPage';
 import BestLanding          from './pages/BestLanding';
 import BestStudentDashboard from './pages/BestStudentDashboard';
 import BestAdminDashboard   from './pages/BestAdminDashboard';
@@ -46,6 +49,7 @@ function HomePage() {
         <About />
         <Initiatives limit={3} />
         <Speakers />
+        <ResourcesSection />
         <Testimonials />
         <Contact />
       </main>
@@ -82,9 +86,11 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/about"   element={<AboutPage />}   />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/team"    element={<TeamPage />}    />
+            <Route path="/about"       element={<AboutPage />}       />
+            <Route path="/resources"   element={<ResourcesPage />}   />
+            <Route path="/resources/:slug" element={<BlogPostPage />} />
+            <Route path="/gallery"     element={<GalleryPage />}     />
+            <Route path="/team"        element={<TeamPage />}        />
             <Route path="/initiatives" element={<InitiativesPage />} />
             
             {/* ── BEST Ecosystem (Member Only) ─────────────────────────── */}

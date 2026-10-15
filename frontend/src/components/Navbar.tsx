@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Home',        href: '/',            isPath: true  },
   { label: 'About',       href: '/about',       isPath: true  },
   { label: 'Initiatives', href: '/initiatives', isPath: true  },
+  { label: 'Resources',   href: '/resources',   isPath: true  },
   { label: 'Team',        href: '/team',        isPath: true  },
   { label: 'Gallery',     href: '/gallery',     isPath: true  },
 ];
@@ -133,7 +134,7 @@ export default function Navbar() {
             {/* Nav links — locked ones show a lock icon if not signed in */}
             {NAV_LINKS.map((link) => {
               const isActive  = link.isPath 
-                ? location.pathname === link.href 
+                ? (link.href === '/' ? location.pathname === '/' : location.pathname.startsWith(link.href))
                 : isHomePage && activeSection === link.href.replace('#', '');
 
               return (
@@ -268,7 +269,7 @@ export default function Navbar() {
           >
             {NAV_LINKS.map((link, i) => {
               const isActive = link.isPath 
-                ? location.pathname === link.href 
+                ? (link.href === '/' ? location.pathname === '/' : location.pathname.startsWith(link.href))
                 : isHomePage && activeSection === link.href.replace('#', '');
 
               return (

@@ -4,6 +4,7 @@ import { Linkedin, Instagram } from 'lucide-react';
 const navLinks = [
   { name: 'About',       href: '/about' },
   { name: 'Initiatives', href: '/initiatives' },
+  { name: 'Resources',   href: '/resources' },
   { name: 'Gallery',     href: '/gallery' },
   { name: 'Team',        href: '/team' },
 ];
